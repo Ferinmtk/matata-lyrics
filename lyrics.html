@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matata Lyrics - Lyrics</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Matata Lyrics</h1>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lyrics.html">Lyrics</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="search-section">
+        <h2>Find Your Favorite Lyrics</h2>
+        <input type="text" id="search-lyrics" placeholder="Search song or artist...">
+    </section>
+    <!-- 🔄 Loading Spinner -->
+    <div id="loading-spinner" class="spinner"></div>
+
+
+    
+
+    <div class="lyrics-list" id="lyrics-list">
+        <!-- Songs will be loaded here dynamically -->
+    </div>
+
+    <!-- Modal Popup for Lyrics -->
+    <div id="lyrics-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Song</h2>
+            <p id="modal-artist"></p>
+            <p id="modal-lyrics"></p>
+        </div>
+    </div>
+     <!-- Footer Section -->
+     <footer>
+        <p>&copy; 2025 Matata Lyrics. All rights reserved.</p>
+        <p>Follow us on:</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+    </footer>
+
+    <script src="scripts/scripts.js" defer></script>
+    <script src="scripts/lyrics.js"></script>
+</body>
+</html>

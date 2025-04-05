@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matata Lyrics - Home</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Matata Lyrics</h1>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lyrics.html">Lyrics</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="images/hero.avif" loading="lazy" alt="">
+        <h2>Discover East African Lyrics</h2>
+        <p>Search and explore lyrics from your favorite artists.</p>
+        <input type="text" id="search-bar" placeholder="Search for a song...">
+    </section>
+
+    
+
+<!-- 🎵 Featured Songs Section -->
+<section id="featured-songs">
+    <h2>Featured Songs</h2>
+    <div id="featured-list"></div>
+    <!-- Add "See All Songs" Button -->
+<!-- 🔥 Fancy "See All Songs" Button -->
+<div class="see-all-container">
+    <a href="lyrics.html" class="see-all-btn">See All Songs 🎶</a>
+</div>
+
+</section>
+
+    <!-- 🎵 Background Music Player -->
+<div id="music-player">
+    <audio id="audio" controls>
+        <source src="data/sample-song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+ <!-- Footer Section -->
+ <footer>
+    <p>&copy; 2025 Matata Lyrics. All rights reserved.</p>
+    <p>Follow us on:</p>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+    </div>
+</footer>
+
+
+    <script src="scripts/scripts.js" defer></script>
+</body>
+</html>
