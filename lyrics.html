@@ -56,6 +56,140 @@
   </div>
 </div>
 
+<script>
+    const searchInput = document.getElementById("search-lyrics");
+    const lyricsList = document.getElementById("lyrics-list");
+    const lyricsModal = document.getElementById("lyrics-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalArtist = document.getElementById("modal-artist");
+    const modalLyrics = document.getElementById("modal-lyrics");
+    const closeModal = document.querySelector(".close");
+    const loadingSpinner = document.getElementById("loading-spinner");
+    
+    const curatedSuggestions = [
+      { title: "Malaika", artist: "Fadhili Williams" },
+      { title: "Jambo Bwana", artist: "Them Mushrooms" },
+      { title: "Kuna Kuna", artist: "Vic West" },
+      { title: "Unconditionally Bae", artist: "Sauti Sol" },
+      { title: "Tetema", artist: "Rayvanny" },
+      { title: "Kwangwaru", artist: "Harmonize" },
+      { title: "Katika", artist: "Navy Kenzo" },
+      { title: "Suzanna", artist: "Sauti Sol" },
+      { title: "Salome", artist: "Diamond Platnumz" },
+      { title: "Yope Remix", artist: "Innoss'B" },
+      { title: "Mbona", artist: "Ali Kiba" },
+      { title: "Sipangwingwi", artist: "Exray Taniua" }
+    ];
+    
+    // Fetch lyrics from lyrics.ovh
+    async function fetchLyrics(artist, title) {
+      try {
+        const res = await fetch(`https://api.lyrics.ovh/v1/${encodeURIComponent(artist)}/${encodeURIComponent(title)}`);
+        const data = await res.json();
+        return data.lyrics || null;
+      } catch {
+        return null;
+      }
+    }
+    
+    // Open modal
+    function openLyricsModal(artist, title, lyrics) {
+      modalTitle.textContent = title;
+      modalArtist.textContent = `By ${artist}`;
+      modalLyrics.textContent = lyrics || "Lyrics not found.";
+      lyricsModal.style.display = "flex";
+    }
+    
+    // Handle close modal
+    closeModal.addEventListener("click", () => lyricsModal.style.display = "none");
+    window.addEventListener("click", e => {
+      if (e.target === lyricsModal) lyricsModal.style.display = "none";
+    });
+    
+    // Preload suggestions with lyrics
+    async function preloadSuggestions() {
+      lyricsList.innerHTML = "<p>Loading suggestions...</p>";
+      const available = [];
+    
+      for (const song of curatedSuggestions) {
+        const lyrics = await fetchLyrics(song.artist, song.title);
+        if (lyrics) available.push({ ...song, lyrics });
+      }
+    
+      lyricsList.innerHTML = available.length
+        ? ""
+        : "<p>No lyrics found for suggestions.</p>";
+    
+      available.forEach(track => {
+        const card = document.createElement("div");
+        card.classList.add("lyric-card");
+        card.innerHTML = `
+          <h3>${track.title}</h3>
+          <p>${track.artist}</p>
+          <button class="view-lyrics" data-artist="${track.artist}" data-title="${track.title}" data-lyrics="${encodeURIComponent(track.lyrics)}">View Lyrics</button>
+        `;
+        lyricsList.appendChild(card);
+      });
+    }
+    
+    // Real-time search from TheAudioDB
+    async function searchLyrics(query) {
+      lyricsList.innerHTML = "<p>Searching...</p>";
+      try {
+        const response = await fetch(`https://www.theaudiodb.com/api/v1/json/2/searchtrack.php?s=${encodeURIComponent(query)}`);
+        const data = await response.json();
+        lyricsList.innerHTML = "";
+    
+        if (data.track && data.track.length > 0) {
+          data.track.forEach(track => {
+            const card = document.createElement("div");
+            card.classList.add("lyric-card");
+            card.innerHTML = `
+              <h3>${track.strTrack}</h3>
+              <p>${track.strArtist}</p>
+              <button class="view-lyrics" data-artist="${track.strArtist}" data-title="${track.strTrack}">View Lyrics</button>
+            `;
+            lyricsList.appendChild(card);
+          });
+        } else {
+          lyricsList.innerHTML = "<p>No results found.</p>";
+        }
+      } catch (error) {
+        lyricsList.innerHTML = "<p>Error fetching results. Try again.</p>";
+      }
+    }
+    
+    // Listen for search input
+    searchInput.addEventListener("input", function () {
+      const query = searchInput.value.trim();
+      if (query.length > 2) {
+        searchLyrics(query);
+      } else {
+        preloadSuggestions();
+      }
+    });
+    
+    // Handle lyrics button clicks (real-time and preloaded)
+    lyricsList.addEventListener("click", async function (e) {
+      if (e.target.classList.contains("view-lyrics")) {
+        const artist = e.target.dataset.artist;
+        const title = e.target.dataset.title;
+        const preloaded = e.target.dataset.lyrics;
+    
+        if (preloaded) {
+          openLyricsModal(artist, title, decodeURIComponent(preloaded));
+        } else {
+          const lyrics = await fetchLyrics(artist, title);
+          openLyricsModal(artist, title, lyrics);
+        }
+      }
+    });
+    
+    // Initialize on page load
+    document.addEventListener("DOMContentLoaded", preloadSuggestions);
+    </script>
+    
+
      <!-- Footer Section -->
      <footer>
         <p>&copy; 2025 Matata Lyrics. All rights reserved.</p>
