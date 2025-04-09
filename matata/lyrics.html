@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matata Lyrics</title>
+  <link rel="stylesheet" href="/matata/styles/main.css" />
+</head>
+<body>
+  <header>
+    <h1>Matata Lyrics 🎵</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="lyrics.html">Lyrics</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Search for Lyrics</h2>
+      <div class="search-bar">
+        <input type="text" id="artistInput" placeholder="Artist" required />
+        <input type="text" id="songInput" placeholder="Song Title" required />
+        <button id="searchBtn">Search</button>
+      </div>
+      <div id="loader" style="display:none;">Loading...</div>
+    </section>
+
+    <section id="lyricsSection" style="display:none;">
+      <h2 id="lyricsTitle"></h2>
+      <pre id="lyricsText"></pre>
+    </section>
+
+    <section id="errorSection" style="display:none;">
+      <p id="errorMessage"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Matata Lyrics</p>
+  </footer>
+
+  <script src="scripts/app.js"></script>
+</body>
+</html>

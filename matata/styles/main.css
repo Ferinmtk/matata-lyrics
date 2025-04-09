@@ -1,0 +1,79 @@
+/* styles/main.css */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #1e1e2f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  header, footer {
+    background: #121223;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    color: #66fcf1;
+    text-decoration: none;
+  }
+  
+  main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  input, button {
+    padding: 0.7rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    margin-right: 10px;
+  }
+  
+  button {
+    background: #66fcf1;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  button:hover {
+    transform: scale(1.05);
+  }
+  
+  .lyrics-box {
+    background: #282a36;
+    padding: 1.5rem;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    margin-top: 2rem;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  .artist-info {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .artist-info img {
+    max-width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+  }
+  
+  .error {
+    color: #ff5555;
+    font-weight: bold;
+    margin-top: 2rem;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
