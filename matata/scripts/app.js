@@ -9,12 +9,12 @@ const showLoader = () => {
     document.getElementById('loader').style.display = 'none';
   };
   
-  // Handle the search button click
+  // Handles the search button click
   document.getElementById('searchBtn').addEventListener('click', async () => {
     const artist = document.getElementById('artistInput').value.trim();
     const title = document.getElementById('songInput').value.trim();
   
-    // Ensure both fields have values
+    // Ensures both fields have values
     if (!artist || !title) {
       alert("Please enter both artist and song title.");
       return;
